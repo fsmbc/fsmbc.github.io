@@ -23,8 +23,10 @@ body {
 }
 .motto {
     bottom: 50px;
-    font-size: 1.5rem;
+    left: 0;
+    font-size: 1.25rem;
     position: absolute;
+    width: 100%;
 }
 #navbar {
     background: rgba(0, 0, 0, 50%);

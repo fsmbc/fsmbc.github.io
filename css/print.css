@@ -1,0 +1,7 @@
+@media print {
+    a.scroll-top,
+    footer,
+    header.header {
+        display: none !important;
+    }
+}

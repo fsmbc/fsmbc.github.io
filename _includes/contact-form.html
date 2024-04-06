@@ -1,0 +1,73 @@
+<form id="contact-form">
+  <p>
+    Do you have a question about Fort Spring Missionary Baptist
+    Church? Are you sharing the good news of your salvation through Christ Jesus?
+    Please contact us!
+  </p>
+  <input name="mailbox" type="hidden" value="fsmbc">
+  <input name="tag[]"   type="hidden" value="Inbox">
+  <input name="email"   type="hidden">
+  <input name="from"    type="hidden" value="noreply@fortspring.church">
+  <input name="subject" type="hidden" value="Website contact form">
+
+  <div class="mb-3">
+    <label for="guest-phone" class="form-label">
+      Your phone number:</label>
+    <input name="guest-phone" class="form-control" id="guest-phone" placeholder="555-555-5555" type="tel" required>
+  </div>
+  <div class="mb-3">
+    <fieldset>
+      <legend>
+        I prefer a response by:</legend>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" id="call" name="preference" value="call" checked />
+        <label class="form-check-label" for="call">
+          phone call</label>
+      </div>
+
+      <div class="form-check">
+        <input class="form-check-input" type="radio" id="text" name="preference" value="text" />
+        <label class="form-check-label" for="text">
+          text message</label>
+      </div>
+    </fieldset>
+  </div>
+  <div class="mb-3">
+    <label for="form-question" class="form-label">
+      Your message for us:</label>
+    <textarea name="question" id="form-question" class="form-control" rows="5" required></textarea>
+  </div>
+  <button onclick="submitForm(event)" class="btn btn-primary">
+    Send</button>
+</form>
+
+<script type="application/javascript">
+ function submitForm(event) {
+   event.preventDefault();
+
+   var honeyPot = document.querySelector('#contact-form input[name=email]');
+   if (!!honeyPot.val) {
+     return;
+   }
+   honeyPot.remove();
+
+   // Gather form fields
+   var formFields = document.querySelectorAll('#contact-form [name]');
+   formFields = Array.prototype.slice.call(formFields);
+   var formParams = formFields.map(function(el) {
+     return encodeURIComponent(el.name) + '=' + encodeURIComponent(el.value);
+   }).join('&');
+
+   // POST form fields
+   var url = 'https://libraryh3lp.com/api/email/_submit';
+   var xhr = new XMLHttpRequest();
+   xhr.open('POST', url);
+   xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+   xhr.onload = function() {
+     var form = document.getElementById('contact-form');
+     form.innerHTML = "We've received your contact request. We'll be in touch as soon as we can.";
+   }.bind(xhr);
+   xhr.send(formParams);
+   return false;
+ }
+</script>
