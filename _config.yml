@@ -28,6 +28,11 @@ url: "https://fortspring.church" # the base hostname & protocol for your site, e
 plugins:
   - jekyll-sitemap
 
+defaults:
+  -
+    scope:
+      path:            "theme/*"
+
 # Exclude from processing.
 # The following items will not be processed, by default.
 # Any item listed under the `exclude:` key here will be automatically added to
